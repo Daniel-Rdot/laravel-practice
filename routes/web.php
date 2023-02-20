@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
+use App\Http\Controllers\ListingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,36 +15,17 @@ use App\Models\Listing;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // All listings
-Route::get('/', function () {
-    return view('listings', [
-        'listings' => Listing::all()
-    ]);
-});
+Route::get('/', [ListingController::class, 'index']);
 
 // Single listing
-// {wildcard}
-// normal way
-//Route::get('/listings/{id}', function ($id) {
-//    $listing = Listing::query()->find($id);
-//    if ($listing) {
-//        return view('listing', [
-//            'listing' => $listing
-//        ]);
-//    } else {
-//        abort('404');
-//    }
-//});
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
-// Eloquent Route Model Finding
-// Eloquent somehow makes passing the id and using a find function completely unnecessary, wow
-// also includes 404 functionality
-Route::get('/listings/{listing}', function (Listing $listing) {
-    return view('listing', [
-        'listing' => $listing
-    ]);
-});
+// Common Resource Routes:
+//index - Show all listings
+//show - Show single listing
+//create - show form to create new listing
+//store - store new listing
+//edit - show form to edit listing
+//update - update listing
+//destroy - delete listing
