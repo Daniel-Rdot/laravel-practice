@@ -16,7 +16,8 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="company"
+                    {{--                    old()-helper makes the input remiain in the field when an error occurs in one of the other fields --}}
+                    name="company" value="{{old('company')}}"
                 />
                 @error('company')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -29,7 +30,7 @@
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     name="title"
-                    placeholder="Beispiel: Senior Entwickler Laravel"
+                    placeholder="Beispiel: Senior Entwickler Laravel" value="{{old('title')}}"
                 />
                 @error('title')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -43,7 +44,7 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="location"
+                    name="location" value="{{old('location')}}"
                 />
                 @error('location')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -55,7 +56,7 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="email"
+                    name="email" value="{{old('email')}}"
                 />
                 @error('email')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -71,7 +72,7 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="website"
+                    name="website" value="{{old('website')}}"
                 />
                 @error('website')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -86,7 +87,7 @@
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
                     name="tags"
-                    placeholder="Beispiel: Laravel, Backend, Postgres, etc"
+                    placeholder="Beispiel: Laravel, Backend, Postgres, etc" value="{{old('tags')}}"
                 />
                 @error('tags')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -114,7 +115,7 @@
                     class="border border-gray-200 rounded p-2 w-full"
                     name="description"
                     rows="10"
-                ></textarea>
+                >{{old('description')}}</textarea>
                 @error('description')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
