@@ -32,14 +32,34 @@
     ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"
         /></a>
     <ul class="flex space-x-6 mr-6 text-lg">
-        <li>
-            <a href="/register" class="hover:text-laravel"
-            ><i class="fa-solid fa-user-plus"></i> Registrieren</a>
-        </li>
-        <li>
-            <a href="/login" class="hover:text-laravel"
-            ><i class="fa-solid fa-arrow-right-to-bracket"></i>Einloggen</a>
-        </li>
+        {{--        @auth makes it so the wrapped content only shows if user is logged in--}}
+        @auth
+            <li>
+            <span class="font-bold uppercase">
+{{--                auth helper can access user attributes--}}
+                Willkommen {{auth()->user()->name}}
+            </span>
+            </li>
+            <li>
+                <a href="/listings/manage" class="hover:text-laravel"
+                ><i class="fa-solid fa-gear"></i> Stellenanzeigen verwalten</a>
+            </li>
+            <li>
+                <form class="inline" method="POST" action="/logout">
+                    @csrf
+                    <button type="submit"><i class="fa-solid fa-door-closed"></i> Ausloggen</button>
+                </form>
+            </li>
+        @else
+            <li>
+                <a href="/register" class="hover:text-laravel"
+                ><i class="fa-solid fa-user-plus"></i> Registrieren</a>
+            </li>
+            <li>
+                <a href="/login" class="hover:text-laravel"
+                ><i class="fa-solid fa-arrow-right-to-bracket"></i> Einloggen</a>
+            </li>
+        @endauth
     </ul>
 </nav>
 <main>

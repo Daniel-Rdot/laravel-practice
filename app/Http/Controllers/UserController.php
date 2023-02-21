@@ -37,4 +37,17 @@ class UserController extends Controller
 
         return redirect('/')->with('message', 'Account erfolgreich erstellt und eingeloggt');
     }
+
+    // Logout User
+    public function logout(Request $request)
+    {
+        // remove authentication information from user's session
+        auth()->logout();
+
+        // invalidate session and regenerate csrf token
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('message', 'Ausloggen erfolgreich');
+    }
 }
