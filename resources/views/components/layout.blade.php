@@ -34,11 +34,11 @@
     <ul class="flex space-x-6 mr-6 text-lg">
         <li>
             <a href="register.html" class="hover:text-laravel"
-            ><i class="fa-solid fa-user-plus"></i> Register</a>
+            ><i class="fa-solid fa-user-plus"></i> Registrieren</a>
         </li>
         <li>
             <a href="login.html" class="hover:text-laravel"
-            ><i class="fa-solid fa-arrow-right-to-bracket"></i>Login</a>
+            ><i class="fa-solid fa-arrow-right-to-bracket"></i>Einloggen</a>
         </li>
     </ul>
 </nav>
@@ -49,8 +49,8 @@
     class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
     <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
 
-    <a href="create.html"
-       class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Post Job</a>
+    <a href="/listings/create"
+       class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Neue Jobanzeige</a>
 </footer>
 </body>
 </html>
