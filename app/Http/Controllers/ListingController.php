@@ -53,6 +53,9 @@ class ListingController extends Controller
             'description' => 'required'
         ]);
 
+        // set column user_id to the id of the user that is currently logged in
+        $formFields['user_id'] = auth()->id();
+
         Listing::create($formFields);
 
         return redirect('/')->with('message', 'Anzeige erfolgreich erstellt');
