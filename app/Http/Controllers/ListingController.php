@@ -88,7 +88,8 @@ class ListingController extends Controller
 
         $listing->update($formFields);
 
-        return back()->with('message', 'Anzeige erfolgreich geändert');
+        session()->flash('message', 'Anzeige erfolgreich geändert');
+        return view('listings.show', ['listing' => $listing]);
     }
 
     public function destroy(Listing $listing)
@@ -96,7 +97,7 @@ class ListingController extends Controller
         if ($listing->user_id != auth()->id()) {
             abort(403, 'Unberechtigter Zugriff');
         }
-        
+
         $listing->delete();
 
         return redirect('/')->with('message', 'Anzeige erfolgreich gelöscht');
