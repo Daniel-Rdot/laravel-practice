@@ -57,4 +57,29 @@ class ListingController extends Controller
 
         return redirect('/')->with('message', 'Anzeige erfolgreich erstellt');
     }
+
+    // Show Edit Form
+    public function edit(Listing $listing)
+    {
+        return view('listings.edit', ['listing' => $listing]);
+    }
+
+    // Update Listing
+    public function update(Request $request, Listing $listing)
+    {
+        // validation
+        $formFields = $request->validate([
+            'title' => 'required',
+            'company' => 'required',
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+            'tags' => 'required',
+            'description' => 'required'
+        ]);
+
+        $listing->update($formFields);
+
+        return back()->with('message', 'Anzeige erfolgreich geändert');
+    }
 }

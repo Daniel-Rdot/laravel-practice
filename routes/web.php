@@ -24,7 +24,7 @@ use App\Http\Controllers\ListingController;
 //update - update listing
 //destroy - delete listing
 
-// All listings
+// All Listings
 Route::get('/', [ListingController::class, 'index']);
 
 // Show Create Form
@@ -33,5 +33,11 @@ Route::get('/listings/create', [ListingController::class, 'create']);
 // Store
 Route::post('/listings/', [ListingController::class, 'store']);
 
-// Single listing
+// Show Edit form
+Route::get('listings/{listing}/edit', [ListingController::class, 'edit']);
+
+// Update Listing
+Route::put('listings/{listing}', [ListingController::class, 'update']);
+
+// Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
