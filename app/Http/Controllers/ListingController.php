@@ -100,7 +100,7 @@ class ListingController extends Controller
 
         $listing->delete();
 
-        return redirect('/')->with('message', 'Anzeige erfolgreich gelöscht');
+        return redirect('/listings/manage')->with('message', 'Anzeige erfolgreich gelöscht');
     }
 
     // Manage Listings View
