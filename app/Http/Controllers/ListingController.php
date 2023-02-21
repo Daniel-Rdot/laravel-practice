@@ -24,7 +24,7 @@ class ListingController extends Controller
 //    single listing
     public function show(Listing $listing)
     {
-        // Eloquent Route Model Finding
+        // Eloquent Model Route Finding
         // Eloquent somehow makes passing the id and using a find function completely unnecessary, wow
         // also includes 404 functionality
         return view('listings.show', [
@@ -81,5 +81,12 @@ class ListingController extends Controller
         $listing->update($formFields);
 
         return back()->with('message', 'Anzeige erfolgreich geändert');
+    }
+
+    public function destroy(Listing $listing)
+    {
+        $listing->delete();
+
+        return redirect('/')->with('message', 'Anzeige erfolgreich gelöscht');
     }
 }
