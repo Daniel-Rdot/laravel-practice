@@ -50,4 +50,28 @@ class UserController extends Controller
 
         return redirect('/')->with('message', 'Ausloggen erfolgreich');
     }
+
+    // Show Login Form
+    public function login()
+    {
+        return view('users.login');
+    }
+
+    // Log User In
+    public function authenticate(Request $request)
+    {
+        // validation
+        $formFields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+        // if login attempt succeeds, generate a new authenticated session
+        if (auth()->attempt($formFields)) {
+            $request->session()->regenerate();
+
+            return redirect('/')->with('message', 'Login erfolgreich');
+        }
+        // if login fails, show error that says wrong credentials. not working like in tutorial, idk why
+        return back()->withErrors(['email' => 'Ungültige Logindaten']);
+    }
 }
