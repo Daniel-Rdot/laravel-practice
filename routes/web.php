@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,7 +31,7 @@ Route::get('/', [ListingController::class, 'index']);
 // Show Create Form
 Route::get('/listings/create', [ListingController::class, 'create']);
 
-// Store
+// Create new Listing / Store
 Route::post('/listings/', [ListingController::class, 'store']);
 
 // Show Edit form
@@ -44,3 +45,9 @@ Route::delete('listings/{listing}', [ListingController::class, 'destroy']);
 
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
+
+// Show Register/Create Form
+Route::get('/register', [UserController::class, 'create']);
+
+// Create New User / Store
+Route::post('/users', [UserController::class, 'store']);
