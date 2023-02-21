@@ -92,4 +92,11 @@ class ListingController extends Controller
 
         return redirect('/')->with('message', 'Anzeige erfolgreich gelöscht');
     }
+
+    // Manage Listings View
+    public function manage()
+    {
+        // pass users listings to manage view via Eloquent relation
+        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+    }
 }
