@@ -2,7 +2,7 @@
     @include('partials._search')
 
     <a href="/" class="inline-block text-black ml-4 mb-4"
-    ><i class="fa-solid fa-arrow-left"></i> Back
+    ><i class="fa-solid fa-arrow-left"></i> Zurück
     </a>
     <div class="mx-4">
         <x-card class="bg-black">
@@ -13,7 +13,8 @@
                 />
 
                 <h3 class="text-2xl mb-2">{{$listing->title}}</h3>
-                <div class="text-xl font-bold mb-4">{{$listing->company}}</div>
+                <div class="text-xl font-bold mb-4"><a href="/company/{{$listing->company_id}}">
+                        {{\App\Models\Company::find($listing->company_id)->name}}</a></div>
                 {{--                bring in tags from database via component listing-tags--}}
                 <x-listing-tags :tagsCsv="$listing->tags"/>
 

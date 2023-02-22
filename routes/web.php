@@ -80,4 +80,6 @@ Route::get('/login/company', [CompanyController::class, 'login'])->name('login')
 // Log In User
 Route::post('/companies/authenticate', [CompanyController::class, 'authenticate']);
 
+// Company Detail View
+Route::get('/company/{company}', [CompanyController::class, 'show']);
 // TO-DO: user/company settings/details

@@ -83,4 +83,15 @@ class CompanyController extends Controller
         // if login fails, show error that says wrong credentials. not working like in tutorial, idk why
         return back()->withErrors(['email' => 'Ungültige Logindaten']);
     }
+
+    //    single listing
+    public function show(Company $company)
+    {
+        // Eloquent Model Route Finding
+        // Eloquent somehow makes passing the id and using a find function completely unnecessary, wow
+        // also includes 404 functionality
+        return view('companies.show', [
+            'company' => $company
+        ]);
+    }
 }
