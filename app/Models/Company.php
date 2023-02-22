@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Termwind\Components\Li;
 
-class User extends Authenticatable
+class Company extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'location'
     ];
 
     /**
@@ -44,8 +45,8 @@ class User extends Authenticatable
     ];
 
     // Relationship to Listings
-//    public function listings()
-//    {
-//        return $this->hasMany(Listing::class, 'user_id');
-//    }
+    public function listings()
+    {
+        return $this->hasMany(Listing::class, 'company_id');
+    }
 }

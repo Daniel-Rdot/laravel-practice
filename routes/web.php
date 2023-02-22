@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Listing;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
-// Show Register/Create Form
+// Show Register/Create User Form
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
 // Create New User / Store
@@ -63,5 +64,8 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// Show Register/Create Company Form
+Route::get('/register/company', [CompanyController::class, 'create'])->middleware('auth');
 
 

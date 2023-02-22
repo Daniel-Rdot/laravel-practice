@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             // add foreign key constraint to create relationship between listing and the user who made it
             // onDelete cascade makes it so if the user is deleted, all his listings are deleted as well
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('company_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->string('tags');
             $table->string('company');
