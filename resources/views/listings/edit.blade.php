@@ -18,7 +18,7 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="company" value="{{$listing->company}}" readonly
+                    name="company" value="{{auth()->user()->name}}" readonly
                 />
                 @error('company')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>

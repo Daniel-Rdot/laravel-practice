@@ -71,7 +71,7 @@ class ListingController extends Controller
     public function update(Request $request, Listing $listing)
     {
         // Ensure that the logged in user is the owner of the Listing
-        if ($listing->user_id != auth()->id()) {
+        if ($listing->company_id != auth()->id()) {
             abort(403, 'Unberechtigter Zugriff');
         }
 
