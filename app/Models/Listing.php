@@ -30,6 +30,10 @@ class Listing extends Model
                 ->orWhere('tags', 'like', '%' . request('search') . '%')
                 ->orWhere('location', 'like', '%' . request('search') . '%');
         }
+
+        if ($filters['company_id'] ?? false) {
+            $query->where('company_id', '=', request('company_id'));
+        }
     }
 
     // Relationship to User

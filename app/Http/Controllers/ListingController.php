@@ -16,7 +16,7 @@ class ListingController extends Controller
         return view('listings.index', [
             // 'listings' => Listing::all()
             // latest() is the same as all(), but sorted
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            'listings' => Listing::latest()->filter(request(['tag', 'search', 'company_id']))->get()
             // feeds the tags from the request into the filter method as an array
         ]);
     }

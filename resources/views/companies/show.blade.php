@@ -5,7 +5,7 @@
         <i class="fa-solid fa-arrow-left"></i> Zurück
     </a>
     <div class="mx-4">
-        <x-card class="bg-black">
+        <x-card>
             <div class="flex flex-col items-center justify-center text-center">
                 <img class="w-48 mr-6 mb-6"
                      src="{{asset('images/no-image.png')}}"
@@ -37,7 +37,12 @@
                         </a>
                     </div>
                 </div>
+                <div class="border border-gray-200 w-full mt-6 mb-6"></div>
+                <div class="text-lg my-4">
+                    <a href="/?company_id={{$company->id}}">Alle Stellenanzeigen von {{$company->name}} anzeigen</a>
+                </div>
             </div>
+
         </x-card>
     </div>
 </x-layout>
