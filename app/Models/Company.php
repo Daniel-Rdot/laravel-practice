@@ -13,6 +13,8 @@ class Company extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = 'company';
+
     /**
      * The attributes that are mass assignable.
      *

@@ -30,7 +30,7 @@ use App\Http\Controllers\CompanyController;
 Route::get('/', [ListingController::class, 'index']);
 
 // Show Create Form
-Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
+Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth:company');
 
 // Create new Listing / Store
 Route::post('/listings/', [ListingController::class, 'store'])->middleware('auth');
@@ -66,6 +66,7 @@ Route::get('/login', [UserController::class, 'login'])->name('login')->middlewar
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Show Register/Create Company Form
-Route::get('/register/company', [CompanyController::class, 'create'])->middleware('auth');
+Route::get('/register/company', [CompanyController::class, 'create']);
 
 
+// TO-DO: user/company settings/details

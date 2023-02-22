@@ -39,10 +39,24 @@
 {{--                auth helper can access user attributes--}}
                 Willkommen {{auth()->user()->name}}
             </span>
+
             </li>
+            @auth('company')
+                <li>
+                    <a href="/listings/manage" class="hover:text-laravel">
+                        <i class="fa-solid fa-object-group"></i> Stellenanzeigen verwalten
+                    </a>
+                </li>
+                <li>
+                    <a href="/companies/settings" class="hover:text-laravel">
+                        <i class="fa-solid fa-gear"></i> Accountdetails
+                    </a>
+                </li>
+            @endauth
             <li>
-                <a href="/listings/manage" class="hover:text-laravel"
-                ><i class="fa-solid fa-gear"></i> Stellenanzeigen verwalten</a>
+                <a href="/users/settings" class="hover:text-laravel">
+                    <i class="fa-solid fa-gear"></i> Accountdetails
+                </a>
             </li>
             <li>
                 <form class="inline" method="POST" action="/logout">
@@ -51,6 +65,13 @@
                 </form>
             </li>
         @else
+            <li>
+            <span class="font-bold uppercase">
+{{--                auth helper can access user attributes--}}
+                Auf der Suche nach deinem Traumjob? <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            </span>
+
+            </li>
             <li>
                 <a href="/register" class="hover:text-laravel"
                 ><i class="fa-solid fa-user-plus"></i> Registrieren</a>
@@ -68,9 +89,10 @@
 <footer
     class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-laravel text-white h-24 mt-24 opacity-90 md:justify-center">
     <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
-
-    <a href="/listings/create"
-       class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Neue Jobanzeige</a>
+    @auth('company')
+        <a href="/listings/create"
+           class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Neue Jobanzeige</a>
+    @endauth
 </footer>
 <x-flash-message/>
 </body>
