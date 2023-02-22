@@ -80,6 +80,10 @@ Route::get('/login/company', [CompanyController::class, 'login'])->name('login')
 // Log In User
 Route::post('/companies/authenticate', [CompanyController::class, 'authenticate']);
 
-// Company Detail View
-Route::get('/company/{company}', [CompanyController::class, 'show']);
+// Company Edit Form
+Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->middleware('auth:company');
+
+// Update Company
+Route::put('companies/{company}', [CompanyController::class, 'update'])->middleware('auth:company');
+
 // TO-DO: user/company settings/details

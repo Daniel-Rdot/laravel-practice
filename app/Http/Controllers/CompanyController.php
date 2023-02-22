@@ -94,4 +94,32 @@ class CompanyController extends Controller
             'company' => $company
         ]);
     }
+
+    // Show Edit Form
+    public function edit(Company $company)
+    {
+        return view('companies.edit', ['company' => $company]);
+    }
+
+    // Update Listing
+    public function update(Request $request, Company $company)
+    {
+        // Ensure that the logged in user is the owner of the Listing
+        if ($company->id != auth()->id()) {
+            abort(403, 'Unberechtigter Zugriff');
+        }
+
+        // validation
+        $formFields = $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'website' => 'required',
+            'email' => ['required', 'email'],
+        ]);
+
+        $company->update($formFields);
+
+        session()->flash('message', 'Anzeige erfolgreich geändert');
+        return view('companies.show', ['company' => $company]);
+    }
 }

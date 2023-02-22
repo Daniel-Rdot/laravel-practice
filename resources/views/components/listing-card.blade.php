@@ -15,7 +15,7 @@
                 <a href="/listings/{{$listing->id}}">{{$listing->title}}</a>
             </h3>
             <div class="text-xl font-bold mb-4">
-                <a href="/company/{{$listing->company_id}}">
+                <a href="/companies/{{$listing->company_id}}">
                     {{\App\Models\Company::find($listing->company_id)->name}}</a>
             </div>
             <x-listing-tags :tagsCsv="$listing->tags"/>

@@ -56,14 +56,14 @@
                 </a>
             </li>
             <li>
-                <a href="/companies/settings" class="hover:text-laravel">
+                <a href="/companies/{{auth('company')->user()->id}}/edit" class="hover:text-laravel">
                     <i class="fa-solid fa-gear"></i> Accountdetails
                 </a>
             </li>
         @endauth
         @auth
             <li>
-                <a href="/users/settings" class="hover:text-laravel">
+                <a href="" class="hover:text-laravel">
                     <i class="fa-solid fa-gear"></i> Accountdetails
                 </a>
             </li>
