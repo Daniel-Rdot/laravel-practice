@@ -29,12 +29,11 @@ class DatabaseSeeder extends Seeder
         // seed 6 listings with owner $company
         Listing::factory(3)->create([
             'company_id' => $company->id,
-            'company' => $company->name,
             'email' => $company->email,
             'website' => $company->website,
             'location' => $company->location
         ]);
-        
+
         User::factory(5)->create();
 
         $seedno = 3;

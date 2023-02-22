@@ -5,6 +5,7 @@ use App\Models\Listing;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
+use \Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,8 @@ use App\Http\Controllers\CompanyController;
 //update - update listing
 //destroy - delete listing
 
+Auth::routes();
+
 // All Listings
 Route::get('/', [ListingController::class, 'index']);
 
@@ -33,19 +36,19 @@ Route::get('/', [ListingController::class, 'index']);
 Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth:company');
 
 // Create new Listing / Store
-Route::post('/listings/', [ListingController::class, 'store'])->middleware('auth');
+Route::post('/listings/', [ListingController::class, 'store'])->middleware('auth:company');
 
 // Show Edit form
-Route::get('listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
+Route::get('listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth:company');
 
 // Update Listing
-Route::put('listings/{listing}', [ListingController::class, 'update'])->middleware('auth');
+Route::put('listings/{listing}', [ListingController::class, 'update'])->middleware('auth:company');
 
 // Delete Listing
-Route::delete('listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
+Route::delete('listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth:company');
 
 // Manage Listings
-Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth:company');
 
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
@@ -53,11 +56,11 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 // Show Register/Create User Form
 Route::get('/register/user', [UserController::class, 'create'])->middleware('guest');
 
-// Create New User / Store
+// Create/Store New User
 Route::post('/users', [UserController::class, 'store']);
 
 // Logout
-Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+Route::post('/logout', [UserController::class, 'logout']);
 
 // Show Login Form
 Route::get('/login/user', [UserController::class, 'login'])->name('login')->middleware('guest');
@@ -66,7 +69,15 @@ Route::get('/login/user', [UserController::class, 'login'])->name('login')->midd
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Show Register/Create Company Form
-Route::get('/register/company', [CompanyController::class, 'create'])->middleware('guest');
+Route::get('/register/company', [CompanyController::class, 'create'])->middleware('guest:company');
 
+// Create/Store New Company
+Route::post('/companies', [CompanyController::class, 'store']);
+
+// Show Company Login Form
+Route::get('/login/company', [CompanyController::class, 'login'])->name('login')->middleware('guest:company');
+
+// Log In User
+Route::post('/companies/authenticate', [CompanyController::class, 'authenticate']);
 
 // TO-DO: user/company settings/details

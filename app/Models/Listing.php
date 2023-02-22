@@ -13,7 +13,7 @@ class Listing extends Model
     use HasFactory;
 
     // in order to create database entries, the fields have to be put into fillable properties in the respective model
-    protected $fillable = ['title', 'company', 'location', 'website', 'email', 'description', 'tags', 'user_id'];
+    protected $fillable = ['title', 'location', 'website', 'email', 'description', 'tags', 'company_id'];
 
     public function scopeFilter($query, array $filters)
     {
@@ -28,8 +28,7 @@ class Listing extends Model
             $query->where('title', 'like', '%' . request('search') . '%')
                 ->orWhere('description', 'like', '%' . request('search') . '%')
                 ->orWhere('tags', 'like', '%' . request('search') . '%')
-                ->orWhere('location', 'like', '%' . request('search') . '%')
-                ->orWhere('company', 'like', '%' . request('search') . '%');
+                ->orWhere('location', 'like', '%' . request('search') . '%');
         }
     }
 

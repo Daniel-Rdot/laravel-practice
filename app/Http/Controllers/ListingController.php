@@ -42,10 +42,10 @@ class ListingController extends Controller
     // Store Listing
     public function store(Request $request)
     {
+
         // validation
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => ['required', Rule::unique('listings', 'company')],
             'location' => 'required',
             'website' => 'required',
             'email' => ['required', 'email', Rule::unique('listings', 'email')],
@@ -54,7 +54,7 @@ class ListingController extends Controller
         ]);
 
         // set column user_id to the id of the user that is currently logged in
-        $formFields['user_id'] = auth()->id();
+        $formFields['company_id'] = auth('company')->id();
 
         Listing::create($formFields);
 
@@ -78,7 +78,6 @@ class ListingController extends Controller
         // validation
         $formFields = $request->validate([
             'title' => 'required',
-            'company' => 'required',
             'location' => 'required',
             'website' => 'required',
             'email' => ['required', 'email'],

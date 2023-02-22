@@ -39,48 +39,69 @@
 {{--                auth helper can access user attributes--}}
                 Willkommen {{auth()->user()->name}}
             </span>
-
             </li>
-            @auth('company')
-                <li>
-                    <a href="/listings/manage" class="hover:text-laravel">
-                        <i class="fa-solid fa-object-group"></i> Stellenanzeigen verwalten
-                    </a>
-                </li>
-                <li>
-                    <a href="/companies/settings" class="hover:text-laravel">
-                        <i class="fa-solid fa-gear"></i> Accountdetails
-                    </a>
-                </li>
-            @endauth
+        @endauth
+        @auth('company')
+            <li>
+            <span class="font-bold uppercase">
+{{--                auth helper can access user attributes--}}
+                Willkommen {{auth('company')->user()->name}}
+            </span>
+            </li>
+        @endauth
+        @auth('company')
+            <li>
+                <a href="/listings/manage" class="hover:text-laravel">
+                    <i class="fa-solid fa-object-group"></i> Stellenanzeigen verwalten
+                </a>
+            </li>
+            <li>
+                <a href="/companies/settings" class="hover:text-laravel">
+                    <i class="fa-solid fa-gear"></i> Accountdetails
+                </a>
+            </li>
+        @endauth
+        @auth
             <li>
                 <a href="/users/settings" class="hover:text-laravel">
                     <i class="fa-solid fa-gear"></i> Accountdetails
                 </a>
             </li>
+        @endauth
+        @auth
             <li>
                 <form class="inline" method="POST" action="/logout">
                     @csrf
                     <button type="submit"><i class="fa-solid fa-door-closed"></i> Ausloggen</button>
                 </form>
             </li>
-        @else
+        @endauth
+        @auth('company')
             <li>
+                <form class="inline" method="POST" action="/logout">
+                    @csrf
+                    <button type="submit"><i class="fa-solid fa-door-closed"></i> Ausloggen</button>
+                </form>
+            </li>
+        @endauth
+        @guest
+            @guest('company')
+                <li>
             <span class="font-bold uppercase">
 {{--                auth helper can access user attributes--}}
                 Auf der Suche nach deinem Traumjob? <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
             </span>
-
-            </li>
-            <li>
-                <a href="/register/user" class="hover:text-laravel"
-                ><i class="fa-solid fa-user-plus"></i> Registrieren</a>
-            </li>
-            <li>
-                <a href="/login/user" class="hover:text-laravel"
-                ><i class="fa-solid fa-arrow-right-to-bracket"></i> Einloggen</a>
-            </li>
-        @endauth
+                </li>
+                <li>
+                    <a href="/register/user" class="hover:text-laravel"
+                    ><i class="fa-solid fa-user-plus"></i> Registrieren</a>
+                </li>
+                <li>
+                    <a href="/login/user" class="hover:text-laravel"
+                    ><i class="fa-solid fa-arrow-right-to-bracket"></i> Einloggen</a>
+                </li>
+            @endguest
+        @endguest
     </ul>
 </nav>
 <main>

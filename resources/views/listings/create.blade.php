@@ -17,12 +17,8 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    {{--                    old()-helper makes the input remiain in the field when an error occurs in one of the other fields --}}
-                    name="company" value="{{old('company')}}"
+                    name="company" value="{{auth()->user()->name}}" readonly
                 />
-                @error('company')
-                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                @enderror
             </div>
 
             <div class="mb-6">
@@ -57,7 +53,7 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="email" value="{{old('email')}}"
+                    name="email" value="{{auth()->user()->email}}"
                 />
                 @error('email')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -73,7 +69,7 @@
                 <input
                     type="text"
                     class="border border-gray-200 rounded p-2 w-full"
-                    name="website" value="{{old('website')}}"
+                    name="website" value="{{auth()->user()->website}}"
                 />
                 @error('website')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
