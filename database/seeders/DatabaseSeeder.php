@@ -23,8 +23,10 @@ class DatabaseSeeder extends Seeder
             'password' => 'abcabc'
         ]);
 
+        Company::factory(5)->create();
+
         // seed 6 listings with owner $company
-        Listing::factory(6)->create([
+        Listing::factory(3)->create([
             'company_id' => $company->id,
             'company' => $company->name,
             'email' => $company->email,
@@ -32,7 +34,22 @@ class DatabaseSeeder extends Seeder
             'location' => $company->location
         ]);
 
-        //        \App\Models\User::factory(10)->create();
+        User::create([
+            'name' => 'daniel',
+            'email' => 'daniel@test.com',
+            'location' => 'Berlin',
+            'password' => 'abcabc'
+        ]);
+
+        User::factory(5)->create();
+
+        $seedno = 3;
+        for ($i = 0; $i < $seedno; $i++) {
+            Listing::factory()->create([
+                'company_id' => rand(2, 6)
+            ]);
+        }
+
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

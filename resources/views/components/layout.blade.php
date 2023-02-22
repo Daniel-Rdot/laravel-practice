@@ -73,11 +73,11 @@
 
             </li>
             <li>
-                <a href="/register" class="hover:text-laravel"
+                <a href="/register/user" class="hover:text-laravel"
                 ><i class="fa-solid fa-user-plus"></i> Registrieren</a>
             </li>
             <li>
-                <a href="/login" class="hover:text-laravel"
+                <a href="/login/user" class="hover:text-laravel"
                 ><i class="fa-solid fa-arrow-right-to-bracket"></i> Einloggen</a>
             </li>
         @endauth
