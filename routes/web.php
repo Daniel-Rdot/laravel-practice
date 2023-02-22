@@ -66,7 +66,7 @@ Route::get('/login/user', [UserController::class, 'login'])->name('login')->midd
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // Show Register/Create Company Form
-Route::get('/register/company', [CompanyController::class, 'create']);
+Route::get('/register/company', [CompanyController::class, 'create'])->middleware('guest');
 
 
 // TO-DO: user/company settings/details

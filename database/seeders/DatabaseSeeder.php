@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\Listing;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 use Termwind\Components\Li;
 use App\Models\Company;
 
@@ -33,14 +34,7 @@ class DatabaseSeeder extends Seeder
             'website' => $company->website,
             'location' => $company->location
         ]);
-
-        User::create([
-            'name' => 'daniel',
-            'email' => 'daniel@test.com',
-            'location' => 'Berlin',
-            'password' => 'abcabc'
-        ]);
-
+        
         User::factory(5)->create();
 
         $seedno = 3;

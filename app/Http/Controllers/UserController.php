@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
-use http\Client\Curl\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -30,7 +30,7 @@ class UserController extends Controller
         $formFields['password'] = bcrypt($formFields['password']);
 
         // Create User
-        $user = \App\Models\User::create($formFields);
+        $user = User::create($formFields);
 
         // Login
 
@@ -66,12 +66,14 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => 'required'
         ]);
+
         // if login attempt succeeds, generate a new authenticated session
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
-
+            
             return redirect('/')->with('message', 'Login erfolgreich');
         }
+
         // if login fails, show error that says wrong credentials. not working like in tutorial, idk why
         return back()->withErrors(['email' => 'Ungültige Logindaten']);
     }
