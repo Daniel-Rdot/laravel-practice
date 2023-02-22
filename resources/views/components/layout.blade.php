@@ -113,6 +113,9 @@
     @auth('company')
         <a href="/listings/create"
            class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Neue Jobanzeige</a>
+    @else
+        <a href="/login/company"
+           class="absolute top-1/3 right-10 bg-black text-white py-2 px-5">Arbeitgeber-Login</a>
     @endauth
 </footer>
 <x-flash-message/>
