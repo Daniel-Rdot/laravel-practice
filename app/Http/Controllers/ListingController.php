@@ -48,7 +48,7 @@ class ListingController extends Controller
             'title' => 'required',
             'location' => 'required',
             'website' => 'required',
-            'email' => ['required', 'email', Rule::unique('listings', 'email')],
+            'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
         ]);
@@ -93,7 +93,7 @@ class ListingController extends Controller
 
     public function destroy(Listing $listing)
     {
-        if ($listing->user_id != auth()->id()) {
+        if ($listing->company_id != auth()->id()) {
             abort(403, 'Unberechtigter Zugriff');
         }
 
