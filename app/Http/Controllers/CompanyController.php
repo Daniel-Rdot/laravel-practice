@@ -122,4 +122,23 @@ class CompanyController extends Controller
         session()->flash('message', 'Anzeige erfolgreich geändert');
         return view('companies.show', ['company' => $company]);
     }
+
+    public function destroy(Request $request, Company $company)
+    {
+        if ($company->id != auth()->id()) {
+            abort(403, 'Unberechtigter Zugriff');
+        }
+
+        // remove authentication information from user's session
+        auth()->logout();
+
+        // invalidate session and regenerate csrf token
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+
+        $company->delete();
+
+        return redirect('/')->with('message', 'Account erfolgreich gelöscht');
+    }
 }

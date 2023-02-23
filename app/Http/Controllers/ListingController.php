@@ -91,6 +91,7 @@ class ListingController extends Controller
         return view('listings.show', ['listing' => $listing]);
     }
 
+    // Delete Listing
     public function destroy(Listing $listing)
     {
         if ($listing->company_id != auth()->id()) {

@@ -88,4 +88,9 @@ Route::put('companies/{company}/update', [CompanyController::class, 'update'])->
 
 // Show Company Details View
 Route::get('companies/{company}', [CompanyController::class, 'show'])->middleware('auth:company');
-// TO-DO: user/company settings/details
+
+// Show User Edit Form
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth');
+
+// Delete Company Account
+Route::delete('companies/{company}', [CompanyController::class, 'destroy'])->middleware('auth:company');

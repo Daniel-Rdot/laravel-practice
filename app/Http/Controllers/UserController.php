@@ -70,11 +70,17 @@ class UserController extends Controller
         // if login attempt succeeds, generate a new authenticated session
         if (auth()->attempt($formFields)) {
             $request->session()->regenerate();
-            
+
             return redirect('/')->with('message', 'Login erfolgreich');
         }
 
         // if login fails, show error that says wrong credentials. not working like in tutorial, idk why
         return back()->withErrors(['email' => 'Ungültige Logindaten']);
+    }
+
+    // Show Edit Form
+    public function edit(User $user)
+    {
+        return view('users.edit', ['user' => $user]);
     }
 }
