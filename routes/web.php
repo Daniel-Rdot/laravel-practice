@@ -84,6 +84,8 @@ Route::post('/companies/authenticate', [CompanyController::class, 'authenticate'
 Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->middleware('auth:company');
 
 // Update Company
-Route::put('companies/{company}', [CompanyController::class, 'update'])->middleware('auth:company');
+Route::put('companies/{company}/update', [CompanyController::class, 'update'])->middleware('auth:company');
 
+// Show Company Details View
+Route::get('companies/{company}', [CompanyController::class, 'show'])->middleware('auth:company');
 // TO-DO: user/company settings/details
