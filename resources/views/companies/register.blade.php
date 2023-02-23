@@ -8,7 +8,7 @@
             <p class="mb-4">Erstelle einen Firmenaccount, um Stellenanzeigen aufzugeben</p>
         </header>
 
-        <form method="POST" action="/companies">
+        <form method="POST" action="/companies" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2">
@@ -60,6 +60,20 @@
                        value="{{old('website')}}"
                 />
                 @error('website')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
+
+            <div class="mb-6">
+                <label for="logo" class="inline-block text-lg mb-2">
+                    Logo
+                </label>
+                <input
+                    type="file"
+                    class="border border-gray-200 rounded p-2 w-full"
+                    name="logo"
+                />
+                @error('logo')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>

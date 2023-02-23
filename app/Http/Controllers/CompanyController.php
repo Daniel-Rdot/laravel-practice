@@ -32,6 +32,10 @@ class CompanyController extends Controller
             'password' => ['required', 'confirmed', 'min:6']
         ]);
 
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
         // Hash Password
         $formFields['password'] = bcrypt($formFields['password']);
 
@@ -40,7 +44,6 @@ class CompanyController extends Controller
 
         // Login
         Auth::guard('company')->login($company);
-//        auth()->login($company);
 
         return redirect('/')->with('message', 'Account erfolgreich erstellt und eingeloggt');
     }

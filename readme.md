@@ -13,3 +13,4 @@ von Daniel Reitz
 - Listings enthalten Tags zum filtern
 - Listings können auch über Search Bar gefiltert werden
 - Enthält DatabaseSeeder für php artisan
+- Logo Upload für Companies hinzugefügt

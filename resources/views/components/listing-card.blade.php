@@ -1,6 +1,6 @@
 {{--for the component to know the listing, we need to hand it over --}}
-{{--the blade directive is "prop"--}}
-
+{{--the blade directive is @props--}}
+<?php use App\Models\Company?>
 
 @props(['listing'])
 
@@ -8,7 +8,8 @@
     <div class="flex">
         <img
             class="hidden w-48 mr-6 md:block"
-            src="{{asset('images/no-image.png')}}" alt=""/>
+            src="{{Company::find($listing->company_id)->logo ? asset('storage/' . Company::find($listing->company_id)->logo) : asset('/images/no-image.png')}}"
+            alt=""/>
         <div>
             <h3 class="text-2xl">
                 {{-- dynamischer titel--}}
@@ -16,7 +17,7 @@
             </h3>
             <div class="text-xl font-bold mb-4">
                 <a href="/companies/{{$listing->company_id}}">
-                    {{\App\Models\Company::find($listing->company_id)->name}}</a>
+                    {{Company::find($listing->company_id)->name}}</a>
             </div>
             <x-listing-tags :tagsCsv="$listing->tags"/>
             <div class="text-lg mt-4">

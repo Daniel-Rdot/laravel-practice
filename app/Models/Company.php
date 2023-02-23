@@ -25,7 +25,8 @@ class Company extends Authenticatable
         'email',
         'password',
         'location',
-        'website'
+        'website',
+        'logo'
     ];
 
     /**

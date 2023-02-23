@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $company = Company::factory()->create([
             'name' => 'Weyland Industries',
             'email' => 'recruiting@weyland.com',
+            'logo' => 'logos/320px-Weyland-yutani-logo.svg.png',
             'password' => 'abcabc'
         ]);
 

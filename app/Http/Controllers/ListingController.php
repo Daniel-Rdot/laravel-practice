@@ -42,7 +42,6 @@ class ListingController extends Controller
     // Store Listing
     public function store(Request $request)
     {
-
         // validation
         $formFields = $request->validate([
             'title' => 'required',
