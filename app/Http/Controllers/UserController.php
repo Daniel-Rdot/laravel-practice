@@ -83,4 +83,32 @@ class UserController extends Controller
     {
         return view('users.edit', ['user' => $user]);
     }
+
+    public function update(Request $request, User $user)
+    {
+        // Ensure that the logged in user is the owner of the Listing
+        if ($user->id != auth()->id()) {
+            abort(403, 'Unberechtigter Zugriff');
+        }
+
+        // validation
+        $formFields = $request->validate([
+            'name' => 'required',
+            'location' => 'required',
+            'email' => ['required', 'email'],
+        ]);
+
+        $user->update($formFields);
+
+        session()->flash('message', 'Accountdaten erfolgreich geändert');
+        return view('users.show', ['user' => $user]);
+    }
+
+    //    Show User Details
+    public function show(User $user)
+    {
+        return view('users.show', [
+            'user' => $user
+        ]);
+    }
 }

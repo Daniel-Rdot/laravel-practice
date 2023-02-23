@@ -119,7 +119,7 @@ class CompanyController extends Controller
 
         $company->update($formFields);
 
-        session()->flash('message', 'Anzeige erfolgreich geändert');
+        session()->flash('message', 'Accountdaten erfolgreich geändert');
         return view('companies.show', ['company' => $company]);
     }
 

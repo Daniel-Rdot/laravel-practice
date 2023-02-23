@@ -63,7 +63,7 @@
         @endauth
         @auth
             <li>
-                <a href="" class="hover:text-laravel">
+                <a href="/users/{{auth()->user()->id}}/edit" class="hover:text-laravel">
                     <i class="fa-solid fa-gear"></i> Accountdetails
                 </a>
             </li>

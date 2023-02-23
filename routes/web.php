@@ -59,14 +59,26 @@ Route::get('/register/user', [UserController::class, 'create'])->middleware('gue
 // Create/Store New User
 Route::post('/users', [UserController::class, 'store']);
 
-// Logout
-Route::post('/logout', [UserController::class, 'logout']);
-
 // Show Login Form
 Route::get('/login/user', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// Logout
+Route::post('/logout', [UserController::class, 'logout']);
+
+// Show User Edit Form
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth');
+
+// Show User Details View
+Route::get('users/{user}', [UserController::class, 'show'])->middleware('auth');
+
+// Update User
+Route::put('users/{users}/update', [UserController::class, 'update'])->middleware('auth');
+
+// Update Company
+Route::put('users/{user}/', [UserController::class, 'update'])->middleware('auth');
 
 // Show Register/Create Company Form
 Route::get('/register/company', [CompanyController::class, 'create'])->middleware('guest:company');
@@ -88,9 +100,6 @@ Route::put('companies/{company}/update', [CompanyController::class, 'update'])->
 
 // Show Company Details View
 Route::get('companies/{company}', [CompanyController::class, 'show'])->middleware('auth:company');
-
-// Show User Edit Form
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('auth');
 
 // Delete Company Account
 Route::delete('companies/{company}', [CompanyController::class, 'destroy'])->middleware('auth:company');
