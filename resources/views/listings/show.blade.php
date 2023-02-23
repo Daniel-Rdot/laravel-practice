@@ -1,3 +1,8 @@
+<?php
+
+use App\Models\Company;
+
+?>
 <x-layout>
     @include('partials._search')
 
@@ -8,7 +13,7 @@
         <x-card class="bg-black">
             <div class="flex flex-col items-center justify-center text-center">
                 <img class="w-48 mr-6 mb-6"
-                     src="{{asset('images/no-image.png')}}"
+                     src="{{Company::find($listing->company_id)->logo ? asset('storage/' . Company::find($listing->company_id)->logo) : asset('/images/no-image.png')}}"
                      alt=""
                 />
 
