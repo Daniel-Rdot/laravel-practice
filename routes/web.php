@@ -29,6 +29,8 @@ use \Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
+// Listings Section
+
 // All Listings
 Route::get('/', [ListingController::class, 'index']);
 
@@ -53,6 +55,9 @@ Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
+
+//User Section
+
 // Show Register/Create User Form
 Route::get('/register/user', [UserController::class, 'create'])->middleware('guest');
 
@@ -75,10 +80,13 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware('a
 Route::get('users/{user}', [UserController::class, 'show'])->middleware('auth');
 
 // Update User
-Route::put('users/{users}/update', [UserController::class, 'update'])->middleware('auth');
-
-// Update Company
 Route::put('users/{user}/', [UserController::class, 'update'])->middleware('auth');
+
+// Delete User Account
+Route::delete('users/{user}', [UserController::class, 'destroy'])->middleware('auth');
+
+
+// Company Section
 
 // Show Register/Create Company Form
 Route::get('/register/company', [CompanyController::class, 'create'])->middleware('guest:company');
@@ -89,14 +97,14 @@ Route::post('/companies', [CompanyController::class, 'store']);
 // Show Company Login Form
 Route::get('/login/company', [CompanyController::class, 'login'])->name('login')->middleware('guest:company');
 
-// Log In User
+// Log In Company
 Route::post('/companies/authenticate', [CompanyController::class, 'authenticate']);
 
 // Company Edit Form
 Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->middleware('auth:company');
 
 // Update Company
-Route::put('companies/{company}/update', [CompanyController::class, 'update'])->middleware('auth:company');
+Route::put('companies/{company}/', [CompanyController::class, 'update'])->middleware('auth:company');
 
 // Show Company Details View
 Route::get('companies/{company}', [CompanyController::class, 'show'])->middleware('auth:company');

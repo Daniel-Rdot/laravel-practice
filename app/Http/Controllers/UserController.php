@@ -111,4 +111,23 @@ class UserController extends Controller
             'user' => $user
         ]);
     }
+
+    public function destroy(Request $request, User $user)
+    {
+        if ($user->id != auth()->id()) {
+            abort(403, 'Unberechtigter Zugriff');
+        }
+
+        // remove authentication information from user's session
+        auth()->logout();
+
+        // invalidate session and regenerate csrf token
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+
+        $user->delete();
+
+        return redirect('/')->with('message', 'Account erfolgreich gelöscht');
+    }
 }

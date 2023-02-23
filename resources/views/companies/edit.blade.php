@@ -97,14 +97,14 @@
 
                 <a href="/" class="text-black ml-4"> Zurück </a>
             </div>
-            <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
-                <form action="/companies/{{$company->id}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button class="text-red-500"><i class="fa-solid fa-trash"></i> Account löschen</button>
-                </form>
-            </td>
         </form>
+        <td class="px-4 py-8 border-t border-b border-gray-300 text-lg">
+            <form action="/companies/{{$company->id}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="text-red-500"><i class="fa-solid fa-trash"></i> Account löschen</button>
+            </form>
+        </td>
     </div>
 </x-layout>
 
