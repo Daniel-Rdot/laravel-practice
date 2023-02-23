@@ -63,6 +63,11 @@
                 @enderror
             </div>
 
+            <img class="w-48 mr-6 mb-6"
+                 src="{{$company->logo ? asset('storage/' . $company->logo) : asset('/images/no-image.png')}}"
+                 alt=""
+            />
+
             <div class="mb-6">
                 <label for="password" class="inline-block text-lg mb-2">
                     Passwort
