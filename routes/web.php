@@ -107,7 +107,7 @@ Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->mid
 Route::put('companies/{company}/', [CompanyController::class, 'update'])->middleware('auth:company');
 
 // Show Company Details View
-Route::get('companies/{company}', [CompanyController::class, 'show'])->middleware('auth:company');
+Route::get('companies/{company}', [CompanyController::class, 'show']);
 
 // Delete Company Account
 Route::delete('companies/{company}', [CompanyController::class, 'destroy'])->middleware('auth:company');
