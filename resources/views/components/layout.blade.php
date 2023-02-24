@@ -30,19 +30,10 @@
 </head>
 <body class="mb-48">
 <nav class="flex justify-between items-center mb-4">
-    <a href="/"
-    ><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"
-        /></a>
+    <a href="/"><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo"/></a>
     <ul class="flex space-x-6 mr-6 text-lg">
         {{--        @auth makes it so the wrapped content only shows if user is logged in--}}
-        @auth
-            <li>
-            <span class="font-bold uppercase">
-{{--                auth helper can access user attributes--}}
-                Willkommen {{auth()->user()->name}}
-            </span>
-            </li>
-        @endauth
+
         @auth('company')
             <li>
             <span class="font-bold uppercase">
@@ -50,8 +41,7 @@
                 Willkommen {{auth('company')->user()->name}}
             </span>
             </li>
-        @endauth
-        @auth('company')
+
             <li>
                 <a href="/listings/manage" class="hover:text-laravel">
                     <i class="fa-solid fa-object-group"></i> Stellenanzeigen verwalten
@@ -62,15 +52,6 @@
                     <i class="fa-solid fa-gear"></i> Accountdetails
                 </a>
             </li>
-        @endauth
-        @auth
-            <li>
-                <a href="/users/{{auth()->user()->id}}/edit" class="hover:text-laravel">
-                    <i class="fa-solid fa-gear"></i> Accountdetails
-                </a>
-            </li>
-        @endauth
-        @auth
             <li>
                 <form class="inline" method="POST" action="/logout">
                     @csrf
@@ -78,13 +59,26 @@
                 </form>
             </li>
         @endauth
-        @auth('company')
-            <li>
-                <form class="inline" method="POST" action="/logout">
-                    @csrf
-                    <button type="submit"><i class="fa-solid fa-door-closed"></i> Ausloggen</button>
-                </form>
-            </li>
+        @auth
+            @guest('company')
+                <li>
+            <span class="font-bold uppercase">
+{{--                auth helper can access user attributes--}}
+                Willkommen {{auth()->user()->name}}
+            </span>
+                </li>
+                <li>
+                    <a href="/users/{{auth()->user()->id}}/edit" class="hover:text-laravel">
+                        <i class="fa-solid fa-gear"></i> Accountdetails
+                    </a>
+                </li>
+                <li>
+                    <form class="inline" method="POST" action="/logout">
+                        @csrf
+                        <button type="submit"><i class="fa-solid fa-door-closed"></i> Ausloggen</button>
+                    </form>
+                </li>
+            @endguest
         @endauth
         @guest
             @guest('company')
