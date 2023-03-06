@@ -120,6 +120,10 @@ class CompanyController extends Controller
             'email' => ['required', 'email'],
         ]);
 
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
+
         $company->update($formFields);
 
         session()->flash('message', 'Accountdaten erfolgreich geändert');

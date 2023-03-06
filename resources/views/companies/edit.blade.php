@@ -7,7 +7,7 @@
             <p class="mb-4">{{$company->title}}</p>
         </header>
 
-        <form method="POST" action="/companies/{{$company->id}}">
+        <form method="POST" action="/companies/{{$company->id}}" enctype="multipart/form-data">
             @csrf
             {{--            directive to change the method into a PUT request--}}
             @method('PUT')
@@ -63,10 +63,17 @@
                 @enderror
             </div>
 
-            <img class="w-48 mr-6 mb-6"
-                 src="{{$company->logo ? asset('storage/' . $company->logo) : asset('/images/no-image.png')}}"
-                 alt=""
-            />
+            <div class="mb-6">
+                <label for="website" class="inline-block text-lg mb-2">Logo</label>
+                <img class="w-48 mr-6 mb-6"
+                     src="{{$company->logo ? asset('storage/' . $company->logo) : asset('/images/no-image.png')}}"
+                     alt=""
+                />
+                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo"/>
+                @error('logo')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
 
             <div class="mb-6">
                 <label for="password" class="inline-block text-lg mb-2">
