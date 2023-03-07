@@ -65,15 +65,13 @@
             </div>
 
             <div class="mb-6">
-                <label for="logo" class="inline-block text-lg mb-2">
-                    Logo
-                </label>
-
-                <input
-                    type="file"
-                    class="border border-gray-200 rounded p-2 w-full"
-                    name="logo"
+                <label for="website" class="inline-block text-lg mb-2">Logo</label>
+                <img class="w-48 mr-6 mb-6" id="image-preview"
+                     src="{{asset('/images/no-image.png')}}"
+                     alt=""
                 />
+                <input type="file" class="border border-gray-200 rounded p-2 w-full" accept="image/*" name="logo"
+                       onchange="updatePreview(this, 'image-preview')"/>
                 @error('logo')
                 <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
